@@ -9,7 +9,7 @@ require('bootstrap/dist/css/bootstrap.css');
 require('jquery-ui/themes/smoothness/jquery-ui.min.css');
 
 // ES6 Promise polyfill
-require('es6-promise').polyfill();
+// require('es6-promise').polyfill();
 
 var WidgetManager = require("./manager").WidgetManager;
 
@@ -17,16 +17,26 @@ var services = require('jupyter-js-services');
 var getKernelSpecs = services.getKernelSpecs;
 var startNewKernel = services.startNewKernel;
 
-var BASEURL = prompt('Notebook BASEURL', 'http://localhost:8888');
+var BASEURL = 'http://localhost:8888';// prompt('Notebook BASEURL', 'http://localhost:8888');
 var WSURL = 'ws:' + BASEURL.split(':').slice(1).join(':');
 
 var do_all_the_things = function() {
-    // Define jupyter-js-widget requirejs module
-    // This is needed for custom widget model to be able to require
-    // jupyter-js-widgets.
     window.define('jupyter-js-widgets', function() {
         return require('jupyter-js-widgets');
     });
+
+    window.define('jupyter-threejs', function() {
+        return require('jupyter-threejs');
+    });
+
+    window.define('jupyter-leaflet', function() {
+        return require('jupyter-leaflet');
+    });
+
+    window.define('bqplot', function() {
+        return require('bqplot');
+    });
+
     // Connect to the notebook webserver.
     let connectionInfo = {
         baseUrl: BASEURL,
@@ -34,6 +44,8 @@ var do_all_the_things = function() {
     };
     getKernelSpecs(connectionInfo).then(kernelSpecs => {
         connectionInfo.name = kernelSpecs.default;
+        var debugarea = document.getElementsByClassName("debugarea")[0];
+        debugarea.textContent = JSON.stringify(kernelSpecs, null, '    ');
         return startNewKernel(connectionInfo);
     }).then(kernel => {
 

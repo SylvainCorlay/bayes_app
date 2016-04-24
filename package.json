@@ -16,6 +16,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "bqplot": "^0.1.1",
     "codemirror": "^5.9.0",
     "es6-promise": "^3.1.2",
     "font-awesome": "^4.5.0",
@@ -24,6 +25,8 @@
     "jquery-ui": "^1.10.5",
     "jupyter-js-services": "0.5.5",
     "jupyter-js-widgets": "^1.0.0",
+    "jupyter-leaflet": "^0.1.1",
+    "jupyter-threejs": "^0.1.2",
     "scriptjs": "^2.5.8"
   },
   "devDependencies": {
@@ -33,6 +36,8 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
+    "less": "^2.6.1",
+    "less-loader": "^2.2.3",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
