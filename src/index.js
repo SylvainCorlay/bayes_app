@@ -75,7 +75,7 @@ function load(event) {
     // If requirejs is not on the page on page load, load it from cdn.
     if (!window.requirejs) {
         var scriptjs = require('scriptjs');
-        scriptjs('https://npmcdn.com/requirejs/require.js', function() {
+        scriptjs('https://unpkg.com/requirejs/require.js', function() {
             do_all_the_things();
         });
     } else {
